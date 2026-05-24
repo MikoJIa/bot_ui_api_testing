@@ -1,0 +1,31 @@
+# Виртуальное окружение (ОЧЕНЬ ВАЖНО!)
+venv/
+.venv/
+env/
+.env/
+
+# Кэш и временные файлы Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Файлы переменных окружения с секретами (токен бота)
+.env
+.env.local
+
+# Логи и базы данных
+*.log
+*.sqlite3
+*.db
+
+# IDЕ и системные файлы
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Файлы тестов и отчетов
+.pytest_cache/
+.coverage
+htmlcov/

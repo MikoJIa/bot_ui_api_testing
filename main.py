@@ -1,0 +1,32 @@
+import asyncio
+import logging
+from aiogram import Bot, Dispatcher
+from config.config import Config, load_config
+from create_dp import dp
+from handlers import user, other, keyboard, test_runner
+
+
+# Функция конфигурирования и запуска бота
+async def main(dp: Dispatcher):
+    # Загружаем конфиг в переменную config
+    config: Config = load_config('D:\\My_All_Projects\\bot_ui_api_test\\.env')
+    # Задаём базовую конфигурацию логирования
+    logging.basicConfig(
+        level=logging.getLevelName(level=config.log.level),
+        format=config.log.format
+    )
+    # Инициализируем бот и диспетчер
+    bot_token = Bot(token=config.bot.token)
+    # Регистриуем роутеры в диспетчере
+    dp.include_router(keyboard.router)
+    dp.include_router(test_runner.router)
+    dp.include_router(user.router)
+    dp.include_router(other.router)
+
+
+    # Пропускаем накопившиеся апдейты и запускаем polling
+    await bot_token.delete_webhook(drop_pending_updates=True)
+    await dp.start_polling(bot_token)
+
+
+asyncio.run(main(dp))

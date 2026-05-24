@@ -1,0 +1,5 @@
+name = 'Marya'
+phone = '+375298897969'
+city = 'San Francisco'
+email = 'Marya_Francisco@gmail.com'
+comment = 'У меня высшая категория дизайнерского дела в Беларуси. Есть нобелевская премия "WorldDesigner"'

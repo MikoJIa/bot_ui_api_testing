@@ -1,0 +1,1 @@
+title_buttons = ['/help', '/start', '/aboutmyself', '/runapitests', '/runuitests']
