@@ -1,17 +1,20 @@
-import time
 from test_data import data_filing_form_become_partner as d
-import pytest
 from selenium.webdriver.support import expected_conditions as EC
 from pages.BaseClass import BaseClass
 from pages.selectors import designer_loc as dl
+import allure
 
 
 class CustomerDesignerPage(BaseClass):
     page_url = 'designers'
 
+    @allure.feature("Страница ддля дизайнеров")
+    @allure.description("Проверка совпадения названия страницы")
     def check_title_designer_page(self, text):
         assert self.find_headers_title(text) == True, "Не правильный переход страницы или название!"
 
+    @allure.feature("форма для партнёров")
+    @allure.description("Позитивная проверка заполнения формы для партнёров")
     def check_positive_form_become_partner(self,name, phone, city, email, comment, text):
         self.scroll_to_offset(700)
         self.find_visibility(dl.loc_button_become_partner).click()
