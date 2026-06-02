@@ -3,7 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from config.config import Config, load_config
 from create_dp import dp
-from handlers import user, other, keyboard, test_runner
+from handlers import user, other, keyboard, test_runner, allure_report_process
 
 
 # Функция конфигурирования и запуска бота
@@ -20,6 +20,7 @@ async def main(dp: Dispatcher):
     # Регистриуем роутеры в диспетчере
     dp.include_router(keyboard.router)
     dp.include_router(test_runner.router)
+    dp.include_router(allure_report_process.router)
     dp.include_router(user.router)
     dp.include_router(other.router)
 

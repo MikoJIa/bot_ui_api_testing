@@ -1,1 +1,1 @@
-title_buttons = ['/help', '/start', '/aboutmyself', '/runapitests', '/runuitests']
+title_buttons = ['/help', '/start', '/aboutmyself', '/runapitests', '/runuitests', '/testslist', '/lastreport', '/getlogs']

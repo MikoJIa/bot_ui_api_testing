@@ -14,11 +14,11 @@ async def keyboard_building(message: Message):
     # Инициализируем билдер
     kb_builder = ReplyKeyboardBuilder()
     # Создаём первый список с кнопками
-    buttons = [KeyboardButton(text=f'{title_buttons[i]}') for i in range(5)]
+    buttons = [KeyboardButton(text=f'{title_buttons[i]}') for i in range(8)]
     # Распаковываем список с кнопками методом add
     kb_builder.add(*buttons)
     # Явно сообщаем билдеру сколько хотим видеть кнопок в 1-м и 2-м рядах
-    kb_builder.adjust(1, 2)
+    kb_builder.adjust(3, 3)
     await message.answer(
         text="Воттакая получается клавиатура",
         reply_markup=kb_builder.as_markup(resize_keyboard=True)
