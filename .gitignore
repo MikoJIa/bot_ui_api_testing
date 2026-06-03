@@ -29,3 +29,7 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# папки с allure
+allure_report/
+allure_results/
