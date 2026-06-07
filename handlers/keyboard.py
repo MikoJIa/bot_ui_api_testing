@@ -4,8 +4,10 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder
 from aiogram.types import Message
 from aiogram import Router
 from lexicon.names_button import title_buttons
+import logging
 
 
+logger = logging.getLogger(__name__)
 router = Router()
 
 # Методом as_markup() передаём клавиатуру как аргумент туда, где она требуется:
@@ -19,6 +21,7 @@ async def keyboard_building(message: Message):
     kb_builder.add(*buttons)
     # Явно сообщаем билдеру сколько хотим видеть кнопок в 1-м и 2-м рядах
     kb_builder.adjust(3, 3)
+    logger.info(f'keyboard built with {buttons}')
     await message.answer(
         text="Воттакая получается клавиатура",
         reply_markup=kb_builder.as_markup(resize_keyboard=True)

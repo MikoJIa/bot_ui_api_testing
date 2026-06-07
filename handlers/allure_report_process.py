@@ -6,7 +6,10 @@ from aiogram.filters import Command
 from aiogram import Router
 from aiogram.types import Message, FSInputFile
 from execute_command_process import execute_command
+import logging
 
+
+logger = logging.getLogger(__name__)
 router = Router()
 
 @router.message(Command(commands='lastreport'))
@@ -16,8 +19,10 @@ async def generate_allure_report(message: Message):
         # Проверка результатов теста
         results_dir = Path('./allure_results')
         if not results_dir.exists() or not any(results_dir.iterdir()):
+            logger.info(f'No results found for {message}')
             await message.answer('Нет данных отчета о тестах!')
         # генерация отчетов
+        logger.info('Generated reports')
         await message.answer("Генерация Allure-отчетов ...")
         report_dir = Path('./allure_report')
         report_dir.mkdir(parents=True, exist_ok=True)
@@ -26,11 +31,11 @@ async def generate_allure_report(message: Message):
             "allure generate ./allure_results --clean -o ./allure_report",
             message
         )
-        print(generate_result)
 
         # Проверка наличия сгенерированного отчета
         report_checkup = report_dir / 'index.html'
         if not report_checkup.exists():
+            logger.info(f'No report found for {message}')
             await message.answer(" Ошибка генерации: index.html не найден в allure-report")
 
         # Создание архива
@@ -54,6 +59,7 @@ async def generate_allure_report(message: Message):
         # Отправка архива
         await message.answer("Отправка архива")
         document = FSInputFile(zip_name, filename=zip_name)
+        logger.info(f'Report generated at {zip_name}')
         await message.bot.send_document(
             chat_id=message.chat.id,
             document=document,
@@ -63,4 +69,5 @@ async def generate_allure_report(message: Message):
         # Очистка временных файлов
         os.remove(zip_name)
     except Exception as e:
+        logger.error(e)
         await message.answer(f"Критическая ошибка: {str(e)}")

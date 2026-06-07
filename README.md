@@ -1,2 +1,10 @@
 # bot_ui_api_testing
-A bot for displaying test scenarios for artmas.by
+A bot for displaying test scenarios for artmas.by\
+Бот который тестирует основные бизнес-функции сайта\
+После того, как прошли тесты(неважно, тест UI, API или все тесты)\
+необходимо скачать файл с архивом в телеграм, распаковать.\
+в распакованной папке ###allure-report через терменал или в IDE/
+вписать команду ###allure open .\
+Результат тестов откроется в браузере.
+
+

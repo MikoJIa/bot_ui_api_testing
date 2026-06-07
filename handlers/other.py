@@ -4,6 +4,7 @@ from lexicon.lexicon import LEXICON_RU
 from aiogram import Router
 
 
+
 router = Router()
 
 # Этот хэндлер будет срабатывать на любые ваши сообщения,

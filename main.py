@@ -1,5 +1,7 @@
 import asyncio
 import logging
+from pathlib import Path
+
 from aiogram import Bot, Dispatcher
 from config.config import Config, load_config
 from create_dp import dp
@@ -11,9 +13,16 @@ async def main(dp: Dispatcher):
     # Загружаем конфиг в переменную config
     config: Config = load_config('D:\\My_All_Projects\\bot_ui_api_test\\.env')
     # Задаём базовую конфигурацию логирования
+    log_dir = Path('logs')
+    log_dir.mkdir(exist_ok=True)
+
     logging.basicConfig(
         level=logging.getLevelName(level=config.log.level),
-        format=config.log.format
+        format=config.log.format,
+        handlers=[
+            logging.FileHandler(log_dir / 'bot.log', encoding='utf-8'),  # Запись в файл
+            logging.StreamHandler()  # Вывод в консоль
+        ]
     )
     # Инициализируем бот и диспетчер
     bot_token = Bot(token=config.bot.token)

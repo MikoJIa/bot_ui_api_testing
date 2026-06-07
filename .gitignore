@@ -33,3 +33,6 @@ htmlcov/
 # папки с allure
 allure_report/
 allure_results/
+
+# папка с логами
+logs/
